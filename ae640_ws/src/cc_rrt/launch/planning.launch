@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- Starting the costmap node -->
+	<node name="costmap_node" pkg="costmap_2d" type="costmap_2d_node">
+		<rosparam file="$(find costmap_2d)/launch/cc_rrt_params.yaml" command="load" ns="costmap" />
+	</node>
+
+	<!-- Starting the main path planning node (cc_rrt) -->
+	<param name="max_nodes" type="int" value="10000"/>			<!-- maximum required nodes in tree -->
+	<param name="max_iterations" type="int" value="1000000"/>	<!-- maximum allowable iterations for CC-RRT -->
+	<param name="delta_step" type="double" value="0.5"/>		<!-- RRT step size, in metres -->
+	<param name="max_angle" type="double" value="30.0"/>		<!-- maximum desired turning angle, in degrees -->
+	<param name="p_safe" type="double" value="0.8"/>			<!-- required safety -->
+	<param name="vehicle_speed" type="double" value="0.50"/>	<!-- expected speed -->
+	<param name="vehicle_turn_rate" type="double" value="1.0"/>	<!-- expected turn rate -->
+	<rosparam param="goal_position">[6.0, -2.0]</rosparam>		<!-- goal co-ordinates (x, y) in m (in base_link) -->
+	<rosparam param="p_x0">[0.0001, 0.0001, 0.0001]</rosparam>	<!-- diagonal of initial state covariance (x, y, psi) -->
+	<rosparam param="control_noise">[0.0001, 0.0001]</rosparam>	<!-- diagonal of control noise covariance (x, y, psi) -->
+	<node name="cc_rrt_node" pkg="cc_rrt" type="cc_rrt_node" output="screen">
+		<remap from="odom" to="odometry/filtered"/>
+		<remap from="cfg_space" to="costmap_node/costmap/costmap"/>
+	</node>
+
+	<node name="unicycle_controller_node" pkg="unicycle_controller" type ="unicycle_controller_node" output="screen">
+		<remap from="cmd_vel" to="ros0xrobot/cmd_vel"/>
+		<remap from="odom" to="odometry/filtered"/>
+	</node>
+
+</launch>

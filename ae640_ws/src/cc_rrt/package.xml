@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  
+  <name>cc_rrt</name>
+  <version>0.0.0</version>
+  <description>The cc_rrt package is a path planning package based on "Chance Constrained RRT for Probabilistic
+Robustness to Environmental Uncertainty" by Brandon D. Luders, Mangal Kothari and Jonathan P. How.</description>
+
+  <maintainer email="aalap@iitk.ac.in">Aalap Shah</maintainer>
+  <maintainer email="gdhaval@iitk.ac.in">Dhaval Gujarathi</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>nav_msgs</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>tf2_ros</build_export_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+
+</package>

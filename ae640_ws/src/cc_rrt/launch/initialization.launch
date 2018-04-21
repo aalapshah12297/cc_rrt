@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- Starting Robot and Pixhawk IMU -->
+	<include file="$(find ros0xrobot)/launch/ros0xrobot_minimal.launch"/>
+	<include file="$(find mavros)/launch/px4.launch"/>
+
+	<!-- Starting robot_localization node -->
+	<node pkg="robot_localization" type="ukf_localization_node" name="ukf_se" clear_params="true">
+		<rosparam command="load" file="$(find robot_localization)/params/firebird_delta_ukf.yaml"/>
+		<remap from="cmd_vel" to="ros0xrobot/cmd_vel"/>
+	</node>
+
+	<!-- Starting rviz for visualization -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find cc_rrt)/rviz/cc_rrt.rviz" output="screen"/>
+
+</launch>

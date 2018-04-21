@@ -1,0 +1,39 @@
+# The StaticLayer plugin subscribes to a published map
+# The InflationLayer plugin inflates a received map as per parameters
+plugins: 
+    - {name: static_map,    type: "costmap_2d::StaticLayer"}
+    - {name: inflation_map, type: "costmap_2d::InflationLayer"}
+
+global_frame: map
+robot_base_frame: base_link
+
+update_frequency: 5.0
+publish_frequency: 1.0
+
+publish_voxel_map: false
+static_map: true
+
+# Setting this to a high value ensures that the map->base_link transform is
+# accepted even if planning.launch is called much after mapping.launch, which
+# is okay assuming the robot does not move in between
+transform_tolerance: 10000
+
+# footprint of firebird delta (as from measurements), approximating it with a
+# rectangular model
+footprint: [[0.610, 0.335], 
+            [-0.330, 0.335], 
+            [-0.330, -0.335],
+            [0.610, -0.335]]
+footprint_padding: 0.05
+# robot_radius: 0.33
+
+# Keeping the inflation radius high ensures that we can get the 'distance to
+# nearest obstacle' from the cost upto a reasonable range (2.4m from robot).
+# Based on calculations (keeping the source code in mind), these values will
+# give a final cost change of ~2 per cell. Actually, these values are
+# overriden by the values from rqt_reconfigure, so it is better to change the
+# default values in InflationPlugin.cfg rather than modifying them here (which
+# will essentially have no effect).
+inflation_radius: 2.73
+cost_scaling_factor: 103.5
+lethal_cost_threshold: 100

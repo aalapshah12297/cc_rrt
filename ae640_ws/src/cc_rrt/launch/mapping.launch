@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- Starting rplidar and mapping nodes for recording a map of the environment -->
+	<include file="$(find rplidar_ros)/launch/firebird_delta_rplidar.launch"/>
+	<node name="gmapping_node" pkg="gmapping" type ="slam_gmapping">
+		<remap from="scan" to="scan_1"/>
+		<param name="xmin" type="double" value="-20.0"/>
+		<param name="ymin" type="double" value="-20.0"/>
+		<param name="xmax" type="double" value="20.0"/>
+		<param name="ymax" type="double" value="20.0"/>
+	</node>
+
+	<!-- Comment out the gmapping part and uncomment the following two lines if you want to use simple transform-based mapping instead of gmapping -->
+	<!-- <node name="lidar_mapping_node" pkg="lidar_mapping" type ="lidar_mapping_node"/>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom"/> -->
+
+	<!-- Starting teleop node for manual control of the robot using a keyboard -->
+	<include file="$(find ros0xrobot)/launch/ros0xrobot_teleop.launch"/>
+
+</launch>
