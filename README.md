@@ -57,6 +57,7 @@ Clone the repository to your system, go to the workspace folder **ae640_ws**, an
 1. `roslaunch cc_rrt initialization.launch`
 2. `roslaunch cc_rrt mapping.launch` (Now drive the robot using the arrow keys, map the region and bring the robot to a suitable start position.)
 3. `roslaunch cc_rrt planning.launch`
+4. Terminate `mapping.launch` before the robot begins to move. This leads to growing uncertainty in the robot's state, which demonstrates one of the key use-cases of this algorithm.
 
 
 ### For testing on bagfiles:
