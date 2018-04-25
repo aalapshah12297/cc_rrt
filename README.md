@@ -45,6 +45,7 @@ If you are not added to the dialout group, you might have to use this after conn
 #### slam_gmapping:
 You can either install gmapping using the following command:
 - `sudo apt-get install ros-kinetic-gmapping`
+
 Or you can use the lidar_mapping node included in the repository. Check _mapping.launch_ to choose.
 
 
@@ -65,5 +66,6 @@ Clone the repository to your system, go to the workspace folder **ae640_ws**, an
 - Run roscore then:
 - `rosparam set /use_sim_time true`
 - `roslaunch cc_rrt planning_test.launch`
+
 Now go to the folder containing the bagfile and then:
 - `rosbag play test_0.bag --clock`
