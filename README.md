@@ -63,9 +63,8 @@ Clone the repository to your system, go to the workspace folder **ae640_ws**, an
 
 ### For testing on bagfiles:
 - Read planning_test.launch in the _cc_rrt_ package. Then set the parameters (esp. _goal_position_) as required.
-- Run roscore then:
+- Run roscore and then:
 - `rosparam set /use_sim_time true`
 - `roslaunch cc_rrt planning_test.launch`
-
-Now go to the folder containing the bagfile and then:
+- Now go to the folder containing the bagfile and then:
 - `rosbag play test_0.bag --clock`
