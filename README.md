@@ -42,7 +42,7 @@ Now go to the directory containing _install_geographiclib_datasets.sh_ (check th
 If you are not added to the dialout group, you might have to use this after connecting the IMU:
 - `sudo chmod 666 /dev/ttyACM0`
 
-##### slam_gmapping:
+#### slam_gmapping:
 You can either install gmapping using the following command:
 - `sudo apt-get install ros-kinetic-gmapping`
 Or you can use the lidar_mapping node included in the repository. Check _mapping.launch_ to choose.
